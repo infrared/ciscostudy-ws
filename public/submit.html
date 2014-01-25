@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CiscoStudy</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+      padding-top: 60px;
+      padding-bottom: 20px;
+    }
+    </style>
+
+ 
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+
+        <a class="navbar-brand" href="#">CiscoStudy</a>
+
+      </div>
+    </div>
+
+    <div class="container">
+        <h3>Submit</h3>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab-ios" data-toggle="tab">IOS</a></li>
+          <li><a href="#tab-definition" data-toggle="tab">Definition</a></li>
+          <li><a href="#tab-basic" data-toggle="tab">Basic</a></li>
+          <li><a href="#tab-multiple-choice" data-toggle="tab">Multiple-Choice</a></li>
+ 
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active container" id="tab-ios">
+              
+              <p>Submissions under the IOS type will use a special algorithm to validate the answer.<br><br>
+                  Use ( ) to denote optional text for the answer
+              </p>
+              
+              <form id="form-ios" class="form-horizontal" role="form">
+                  <input type="hidden" name="type" value="ios">
+                  <div class="form-group">
+                    <label for="cert" class="col-sm-2 control-label">Cert</label>
+                    <div class="col-sm-5">
+                        <select id="cert" name="cert" class="form-control">
+                          <option value="icnd1">ICND1</option>
+                          <option value="icnd2">ICND2</option>
+                          <option value="ccna-voice">NA VOICE</option>
+                          <option value="ccna-security">NA SEC</option>
+                          
+                          
+                          <option value="ccnp-switch">CCNP Switch</option>
+                          <option value="ccnp-route">CCNP Route</option>
+                          <option value="ccnp-trouble-shoot">CCNP TS</option>
+                        </select>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <label for="question" class="col-sm-2 control-label">Question</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="question" id="question" placeholder="How do you save the running config to nvram?">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="answer" class="col-sm-2 control-label">Answer</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="answer" id="ansewr" placeholder="copy run start">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="keywords" class="col-sm-2 control-label">Keywords</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="keywords" id="keywords" placeholder="nvram config ios">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </div>
+                </div>
+              </form>
+              
+              
+              
+              
+              
+          </div>
+          <div class="tab-pane" id="tab-multiple-choice">mc</div>
+          
+          
+          <div class="tab-pane" id="tab-definition">
+              
+              <form id="form-definition" class="form-horizontal" role="form">
+                  <input type="hidden" name="type" value="definition">
+                  <div class="form-group">
+                    <label for="cert" class="col-sm-2 control-label">Cert</label>
+                    <div class="col-sm-5">
+                        <select id="cert" name="cert" class="form-control">
+                          <option value="icnd1">ICND1</option>
+                          <option value="icnd2">ICND2</option>
+                          <option value="ccna-voice">NA VOICE</option>
+                          <option value="ccna-security">NA SEC</option>
+                          
+                          
+                          <option value="ccnp-switch">CCNP Switch</option>
+                          <option value="ccnp-route">CCNP Route</option>
+                          <option value="ccnp-trouble-shoot">CCNP TS</option>
+                        </select>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <label for="question" class="col-sm-2 control-label">Term</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="term" id="term" placeholder="Data-Link connection identifier">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="answer" class="col-sm-2 control-label">Acronym (optional)</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="acronym" id="acronym" placeholder="DLCI">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="keywords" class="col-sm-2 control-label">Definition</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="definition" id="definition" placeholder="Frame Relay identifier used to assign frames to a specific PVC">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </div>
+                </div>
+              </form>
+              
+              
+              
+              
+          </div>
+        
+        </div>
+        
+ 
+
+    </div> <!-- /container -->
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/submit.js"></script>
+  
+  </body>
+</html>
