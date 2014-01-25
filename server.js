@@ -277,6 +277,31 @@ app.get('/distinct-certs',function(req,res){
         }
     });
 });
+app.get('/count/:cert',function(req,res) {
+    var collection = mongo.collection('quiz');
+    var cert = req.params.cert;
+    
+    collection.count({ cert: cert},function(err,results){
+        if (err) {
+            res.json({ error: err});
+        } else {
+            res.json({success: results});
+        }
+    });
+});
+app.get('/count/:cert/:type',function(req,res) {
+    var collection = mongo.collection('quiz');
+    var cert = req.params.cert;
+    var type = req.params.type;
+    
+    collection.count({ cert: cert,type: type},function(err,results){
+        if (err) {
+            res.json({ error: err});
+        } else {
+            res.json({success: results});
+        }
+    });
+});
 
 
 var server = http.createServer(app);
