@@ -26,7 +26,7 @@ var sessionStore = new RedisStore();
 
 var app = express();
 app.configure(function(){
-    app.set('port',5555);
+    app.set('port',7777);
     app.use(express.favicon());
     app.use(express.json());
     app.use(express.urlencoded());
