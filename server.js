@@ -218,10 +218,22 @@ app.post('/submit',function(req,res) {
             type: type,
             term: req.body.term.trim(),
             acronym: (req.body.acronym.trim() === undefined) ? null : req.body.acronym.trim(),
+            keywords : req.body.keywords.match(/(\w+)/g),
             definition: req.body.definition.trim(),
             random: Math.random()
         };
         break;
+    case "basic":
+        var data = {
+            cert : req.body.cert.trim(),
+            type : type,
+            keywords : req.body.keywords.match(/(\w+)/g),
+            question : req.body.question.trim(),
+            answer: req.body.answer.trim(),
+            random: Math.random()
+        };
+        break;
+        
     }
     
     var collection = mongo.collection('quiz');
@@ -244,6 +256,8 @@ app.get('/:cert/all',function(req,res) {
         res.json(results);
     });
 });
+
+/* Get random quiz entry */
 app.get('/:cert/random',function(req,res) {
     
     var cert = req.params.cert;
@@ -267,6 +281,34 @@ app.get('/:cert/random',function(req,res) {
     });
     
 });
+app.get('/:cert/topic/:topic',function(req,res) {
+    
+    var cert = req.params.cert;
+    var topic = req.params.topic;
+    var rand = Math.random();
+    
+    var collection = mongo.collection('quiz');
+    
+    collection.findOne({ "cert": cert, "keywords": { $in: [ topic ] }, "random": { $gte: rand } }, function(err,results) {
+        if (err) { 
+            res.json({error: err});
+        } else {
+            if (results === null) {
+                collection.findOne({ "cert": cert, "keywords": { $in: [ topic ] }, "random": { $lte: rand } }, function(err,results) {
+                    if (err) {
+                        res.json({error: err});
+                    } else {
+                        res.json({ success: results});
+                    }
+                });
+            } else {
+                res.json({success: results});
+            }
+        }
+    });
+    
+});
+/* Get all certs in database */
 app.get('/distinct-certs',function(req,res){
     var collection = mongo.collection('quiz');
     collection.distinct('cert',function(err,results){
@@ -277,11 +319,13 @@ app.get('/distinct-certs',function(req,res){
         }
     });
 });
+
+/* Get all keywords (topics) for a cert */
 app.get('/:cert/distinct-topics',function(req,res) {
     
     var cert = req.params.cert;
     var collection = mongo.collection('quiz');
-    collection.distinct('type', { cert: cert}, function(err,results) {
+    collection.distinct('keywords', { cert: cert}, function(err,results) {
         if (err) {
             res.json({ error: err});
         } else {
@@ -291,6 +335,7 @@ app.get('/:cert/distinct-topics',function(req,res) {
     
     
 });
+/* Count database entries for a particular cert */
 app.get('/count/:cert',function(req,res) {
     var collection = mongo.collection('quiz');
     var cert = req.params.cert;
@@ -303,6 +348,7 @@ app.get('/count/:cert',function(req,res) {
         }
     });
 });
+/* Count datbase entries for a particular cert TYPE */
 app.get('/count/:cert/:type',function(req,res) {
     var collection = mongo.collection('quiz');
     var cert = req.params.cert;

@@ -81,7 +81,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                    <label for="keywords" class="col-sm-2 control-label">Keywords</label>
+                    <label for="keywords" class="col-sm-2 control-label">Topics</label>
                     <div class="col-sm-5">
                         <input type="text" class="form-control" name="keywords" id="keywords" placeholder="nvram config ios">
                     </div>
@@ -97,6 +97,51 @@
               
               
               
+          </div>
+          <div class="tab-pane" id="tab-basic">
+              <p>Submissions under this category are just simple question/answer.</p>
+              <form id="form-basic" class="form-horizontal" role="form">
+                  <input type="hidden" name="type" value="basic">
+                  <div class="form-group">
+                    <label for="cert" class="col-sm-2 control-label">Cert</label>
+                    <div class="col-sm-5">
+                        <select id="cert" name="cert" class="form-control">
+                          <option value="icnd1">ICND1</option>
+                          <option value="icnd2">ICND2</option>
+                          <option value="ccna-voice">NA VOICE</option>
+                          <option value="ccna-security">NA SEC</option>
+                          
+                          
+                          <option value="ccnp-switch">CCNP Switch</option>
+                          <option value="ccnp-route">CCNP Route</option>
+                          <option value="ccnp-trouble-shoot">CCNP TS</option>
+                        </select>
+                    </div>
+                  </div>
+                <div class="form-group">
+                  <label for="question" class="col-sm-2 control-label">Question</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="question" id="question" placeholder="How many bits are in an IPv4 address">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="answer" class="col-sm-2 control-label">Answer</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" name="answer" id="ansewr" placeholder="32">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="keywords" class="col-sm-2 control-label">Topics</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="keywords" id="keywords" placeholder="subnetting">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </div>
+                </div>
+              </form>
           </div>
           <div class="tab-pane" id="tab-multiple-choice">mc</div>
           
@@ -132,6 +177,12 @@
                   <div class="col-sm-5">
                     <input type="text" class="form-control" name="acronym" id="acronym" placeholder="DLCI">
                   </div>
+                </div>
+                <div class="form-group">
+                    <label for="keywords" class="col-sm-2 control-label">Topics</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="keywords" id="keywords" placeholder="nvram config ios">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="keywords" class="col-sm-2 control-label">Definition</label>
