@@ -248,7 +248,7 @@ app.post('/submit',function(req,res) {
 });
 
 
-app.get('/:cert/all',function(req,res) {
+app.get('/quiz/:cert/all',function(req,res) {
     
     var cert = req.params.cert;
     var collection = mongo.collection('quiz');
@@ -258,7 +258,7 @@ app.get('/:cert/all',function(req,res) {
 });
 
 /* Get random quiz entry */
-app.get('/:cert/random',function(req,res) {
+app.get('/quiz/:cert/random',function(req,res) {
     
     var cert = req.params.cert;
     
@@ -281,7 +281,7 @@ app.get('/:cert/random',function(req,res) {
     });
     
 });
-app.get('/:cert/topic/:topic',function(req,res) {
+app.get('/quiz/:cert/topic/:topic',function(req,res) {
     
     var cert = req.params.cert;
     var topic = req.params.topic;
@@ -309,7 +309,7 @@ app.get('/:cert/topic/:topic',function(req,res) {
     
 });
 /* Get all certs in database */
-app.get('/distinct-certs',function(req,res){
+app.get('/certs',function(req,res){
     var collection = mongo.collection('quiz');
     collection.distinct('cert',function(err,results){
         if (err){
@@ -321,7 +321,7 @@ app.get('/distinct-certs',function(req,res){
 });
 
 /* Get all keywords (topics) for a cert */
-app.get('/:cert/distinct-topics',function(req,res) {
+app.get('/topics/:cert',function(req,res) {
     
     var cert = req.params.cert;
     var collection = mongo.collection('quiz');
@@ -349,12 +349,26 @@ app.get('/count/:cert',function(req,res) {
     });
 });
 /* Count datbase entries for a particular cert TYPE */
-app.get('/count/:cert/:type',function(req,res) {
+app.get('/count/:cert/type/:type',function(req,res) {
     var collection = mongo.collection('quiz');
     var cert = req.params.cert;
     var type = req.params.type;
     
     collection.count({ cert: cert,type: type},function(err,results){
+        if (err) {
+            res.json({ error: err});
+        } else {
+            res.json({success: results});
+        }
+    });
+});
+/* Count database entries for a particular cert TOPIC */
+app.get('/count/:cert/topic/:topic',function(req,res) {
+    var collection = mongo.collection('quiz');
+    var cert = req.params.cert;
+    var topic = req.params.topic;
+
+    collection.count({ cert: cert, keywords: { $in: [ topic ] } },function(err,results){
         if (err) {
             res.json({ error: err});
         } else {
